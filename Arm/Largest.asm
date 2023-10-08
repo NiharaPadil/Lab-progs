@@ -1,0 +1,30 @@
+        AREA LARGEST,CODE,READONLY
+ENTRY
+START
+        MOV R0,#4
+        LDR R1,=VALUE
+        LDR R2,[R1],#4
+
+LOOP    LDR R3,[R1],#4
+        CMP R2,R3
+        BHI LOOP1
+        MOV R2,R3
+
+LOOP1   SUB R0,R0,#1
+        CMP R0,#0
+        BNE LOOP
+        LDR R4,=RESULT
+        STR R2,[R4]
+B1      B B1
+
+
+VALUE   DCD 0X44444444
+        DCD 0X11111111
+        DCD 0X22222222
+        DCD 0X88888888
+        DCD 0XFFFFFFFF
+
+
+        AREA DATA2,DATA,READWRITE
+RESULT  DCD 0X00000000
+        END

@@ -1,0 +1,80 @@
+PROJECT CREATION IN KEILUV4 IDE:
+
+	1. Create a project folder before creating NEW project. 
+	2. Open Keil uVision4 IDE software by double clicking on “Keil Uvision4” icon. 
+	3. Go to “Project” then to “New uVision Project” and save it with a name in the 
+		respective project folder, already you created. 
+	4. Select the device as “NXP” In that “LPC2148” then press OK and then press “YES”
+		button to add “startup.s” file. 
+	5. In startup file go to Configuration Wizard. In Configuration Wizard window 
+		uncheck PLL Setup and check VPBDIV Setup.
+	6. Go to “File” In that “New” to open an editor window. Create your source file and use 
+		the header file “lpc21xx.h” in the source file and save the file. Colour syntax 
+		highlighting will be enabled once the file is saved with a extension such as “.C “. 
+	7. Right click on “Source Group 1” and select the option “Add Existing Files to Group
+		Source Group 1“add the *.C source file(s) to the group. 
+	8. After adding the source file you can see the file in Project Window. 
+	9. Then go to “Project” in that “Translate” to compile the File (s). Check out the Build 
+		output window. 
+	10. Right click on Target1 and select options for Target Target1. 
+		Then go to option “Target” in that 
+			1. Xtal 12.0MHz 
+			2. Select “Use MicroLIB”. 
+			3. Select IROM1 (starting 0x0 size 0x80000). 
+			4. Select IRAM1 (starting 0x40000000 size 0x8000). 	
+		1. Then go to option “Output”
+			1. Select “Create Hex file”. 
+		2. Then go to option “Linker”
+			Select “Use Memory Layout for Target Dialog”. To come out of this window press OK
+	11. Go to “Project” in that “Build Target” for building all source files such as “.C”,”.ASM”, 
+		“.h”, files, etc…This will create the *.HEX file if no warnings & no Errors. Check out the
+		Build output window.
+
+
+
+
+
+Settings in FLASH MAGIC:
+	Options -> Advanced options -> Hardware Config
+	Enable these options only 
+	Use DTR and RTS to control RST and ISP pin 
+	Keep RTS asserted while COM port open 
+	Press OK then do the below settings 
+		Step1. Communications: 
+			1. Device : LPC2148 
+			2. Com Port : COM1 
+			3. Baud Rate : 7200 
+			4. Interface : None(ISP) 
+			5. Oscillator : 12MHz 
+		Step2. ERASE: 
+			1. Select “Erase Blocks Used By Hex File”. 
+		Step3. Hex file: 
+			1. Browse and select the Hex file which you want to download
+		Step4. Options 
+			1. Select “Verify after programming”. 
+		Step5. Start:
+			2. Click Start to download the hex file to the controller. 
+		After downloading the code the program starts executing in the hardware, then remove the 
+			ISP jumper JP7
+
+
+
+
+TO KNOW THE PORT NUMBER OF THE DEVICE 	
+	my computer->Manage->device manager->port->check
+
+
+JUMPERS
+	`steppar motar- JP13
+
+	`LED- JP02
+	push switch-always on SW13
+	SW1-for next
+	SW9-reset
+
+	`external interrupt-JP6
+
+	`square-JP3,JP11
+	black-Ground
+	Red-High
+			
