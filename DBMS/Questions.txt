@@ -1,0 +1,92 @@
+
+1	Consider the following schema for Bank Database:
+BRANCH(bid: varchar, bname:string, branch-city:string, assets:integer)
+ACCOUNT(accno:int, branch-name:string, balance:integer)
+DEPOSITOR(customer-name:string, accno:int)
+CUSTOMER(Cid:varchar, customer-name:string, customer-street:string, customer-city:string)
+LOAN(loan-number:int, branch-name:string, amount:integer, cid:varchar)
+Write SQL queries to
+1.	Find all the customers who have at least one account at the “Mangaluru” branch.
+2.	Find all the customers who have an account at all the branches located in a specific city.
+3.	Retrieve the Customer name and loan amount of a customer who borrowed a loan more than 5,00,000.
+4.	Retrieve the details of bank branch with maximum assets.
+5.	Demonstrate how you delete all account tuples at every branch located in a specific city
+
+
+
+
+
+
+
+2	Consider the following schema for a Library Database:
+BOOK(Book_id:varchar, Title:string, Publisher_Name:string, Pub_Year:integer)
+BOOK_AUTHORS(Book_id:varchar, Author_Name:string)
+PUBLISHER(Name:string, Address:string, Phone:integer)
+BOOK_COPIES(Book_id:varchar, Programme_id:varchar, No-of_Copies:integer)
+BOOK_LENDING(Book_id:varchar, Programme_id:varchar, Card_No:varchar, Date_Out:date, Due_Date:date)
+LIBRARY_PROGRAMME(Programme_id:varchar, Programme_Name:string, Address:string)
+Write SQL queries to
+1.	Retrieve details of all books in the library – id, title, name of publisher, authors, number of copies in each Programme, etc.
+2.	Get the particulars of borrowers who have borrowed more than 3 books, but from Jan 2023 to Jun 2023.
+3.	Delete a book in BOOK table. Update the contents of other tables to reflect this data manipulation operation.
+4.	Partition the BOOK table based on year of publication. Demonstrate its working with a simple query.
+5.	Create a view of all books and its number of copies that are currently available in the Library
+
+
+
+
+3	Consider the schema for College Database:
+STUDENT(USN, SName, Address, Phone, Gender)
+SEMSEC(SSID, Sem, Sec)
+CLASS(USN, SSID)
+COURSE(Subcode, Title, Sem, Credits)
+IAMARKS(USN, Subcode, SSID, Test1, Test2, Test3, FinalIA)
+Write SQL queries to
+1.	List all the student details studying in fourth semester „C‟ section.
+2.	Compute the total number of male and female students in each semester and in each section.
+3.	Create a view of Test1 marks of student USN “4SF20CD001” in all Courses.
+4.	Calculate the FinalIA (average of three test marks) and update the corresponding table for all students.
+5.	Categorize students based on the following criterion:
+If FinalIA = 45 to 50 then CAT = “Outstanding”
+If FinalIA= 40 to 45 then CAT= “Good”
+If FinalIA = 30 to 40 then CAT = “Average”
+If FinalIA< 30 then CAT = “Weak”
+Give these details only for 8th semester A, B, and C section students.
+
+
+
+
+
+4	Consider the schema for Company Database:
+EMPLOYEE (Eid:varchar, Name:string, Address: string, Gender:string, Salary: integer, SuperEid: varchar, Dno: varchar) 
+DEPARTMENT (Dnum: varchar, Dname: string, DMgr_id:varchar, Mgr_start_date: date) 
+DLOCATION (Dno: varchar, Dlocation:string) 
+PROJECT (Pnum:varchar, Pname: string, Plocation:string, Dno:varchar ) 
+WORKS_ON (Eid: varchar, Pno: varchar, Hours: integer) 
+DEPENDENT (Empid: varchar, Dep_name:string, Gender:string, Bdate:date, Relationship:String)
+Write SQL queries to
+1.	Make a list of all project numbers for projects that involve an employee whose name is “Rahul”, either as a worker or as a manager of the department that controls the project.
+2.	Show the resulting salaries if every employee working on the “IoT” project is given a 10 percent raise.
+3.	Find the sum of the salaries of all employees of the “Accounts” department, as well as the maximum salary, the minimum salary, and the average salary in this department.
+4.	Retrieve the name of each employee who works on all the projects controlled by department number 5 (use NOT EXISTS operator).
+5.	Create a view Dept_info that gives details of department name, Number of employees and total salary of each department.
+
+
+
+
+
+
+5	Consider the schema for Airline Database:
+Flights (fno: varchar, from: string, to: string, distance: integer, departs: time, arrives: time, price: integer) 
+Aircraft (aid: varchar, aname: string, cruisingrange: integer) 
+Certified (eid: varchar, aid: varchar) 
+Employees (eid: varchar, ename: string, salary: integer)
+Note: The Employees relation describes pilots and other kinds of employees as well; Every pilot is certified for some aircraft, and only pilots are certified to fly.
+Write SQL queries to
+1.	Find the names of aircraft such that all pilots certified to operate them have salaries more than Rs.80, 000.
+2.	For each pilot who is certified for more than three aircrafts, find the eid and the maximum cruisingrange of the aircraft for which she or he is certified.
+3.	Find the names of pilots whose salary is less than the price of the cheapest route from Bengaluru to Mumbai.
+4.	Find the aids of all aircraft that can be used on routes from Bengaluru to New Delhi.
+5.	Find the employee name and salary earning second highest salary.
+
+
