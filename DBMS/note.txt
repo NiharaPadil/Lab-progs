@@ -1,0 +1,856 @@
+LAB 1
+-------------------------------------------------------------------------------------------------------------
+CREATE TABLE BRANCH(
+BRANCH_ID VARCHAR(10),
+BANK_NAME VARCHAR(15),
+BRANCH_NAME VARCHAR(20),
+ASSETS INT NOT NULL,
+PRIMARY KEY(BRANCH_ID)
+);
+
+
+DESC BRANCH;
+
+
+CREATE TABLE CUSTOMER(
+CUSTOMER_ID VARCHAR(10),
+CUSTOMER_NAME VARCHAR(20),
+CUSTOMER_AGE INT,
+CUSTOMER_ADDRESS VARCHAR(20),
+CUSTOMER_PHONE INT,
+PRIMARY KEY(CUSTOMER_ID)
+);
+
+
+
+DESC CUSTOMER;
+
+
+CREATE TABLE ACCOUNT(
+ACC_NO INT,
+BRANCH_ID VARCHAR(10),
+ACCOUNT_TYPE VARCHAR(10),
+ACCOUNT_BALANCE INT,
+CUSTOMER_ID VARCHAR(10),
+PRIMARY KEY(ACC_NO),
+FOREIGN KEY (BRANCH_ID) REFERENCES BRANCH(BRANCH_ID) ON DELETE CASCADE,
+FOREIGN KEY(CUSTOMER_ID) REFERENCES CUSTOMER(CUSTOMER_ID) ON DELETE CASCADE
+);
+
+
+DESC ACCOUNT;
+
+
+CREATE TABLE LOAN(
+LOAN_NUMBER VARCHAR2(5),
+BRANCH_ID VARCHAR(10),
+AMOUNT INT,
+CUSTOMER_ID VARCHAR(10),
+PRIMARY KEY(LOAN_NUMBER),
+FOREIGN KEY (BRANCH_ID) REFERENCES BRANCH(BRANCH_ID) ON DELETE CASCADE,
+FOREIGN KEY(CUSTOMER_ID) REFERENCES CUSTOMER(CUSTOMER_ID) ON DELETE CASCADE);
+
+
+DESC LOAN;
+
+
+INSERT INTO BRANCH VALUES('B1',' CANARA','MANGALURU',60000000);
+INSERT INTO BRANCH VALUES('B2',' BANK OF BARODA','MANGALURU',70000000);
+INSERT INTO BRANCH VALUES('B3',' CANARA','KASARGOD',50000000);
+INSERT INTO BRANCH VALUES('B4',' SBI','BANGLORE',30000000);
+INSERT INTO BRANCH VALUES('B5',' UNION BANK','DELHI',20000000);
+
+
+SELECT * FROM BRANCH;
+
+
+INSERT INTO CUSTOMER VALUES('C1','RAVI',22,'MANGALURU',8745263);
+INSERT INTO CUSTOMER VALUES('C2','ASHA',26,'DELHI',98745641);
+INSERT INTO CUSTOMER VALUES('C3','VARUN',23,'KASARGOD',78954623);
+INSERT INTO CUSTOMER VALUES('C4','ARPITHA',22,'MANGALURU',9856325);
+INSERT INTO CUSTOMER VALUES('C5','SACHIN',23,'BANGLORE',78541365);
+
+
+SELECT * FROM CUSTOMER;
+
+
+INSERT INTO ACCOUNT VALUES(123,'B1','SAVINGS',10000,'C1');
+INSERT INTO ACCOUNT VALUES(456,'B5','RECURRING',20000,'C2');
+INSERT INTO ACCOUNT VALUES(789,'B1','SAVINGS',30000,'C1');
+INSERT INTO ACCOUNT VALUES(1122,'B2','FD',5000,'C3');
+INSERT INTO ACCOUNT VALUES(1334,'B1','SAVINGS',10000,'C4');
+INSERT INTO ACCOUNT VALUES(1234,'B3','FD',90000,'C5');
+INSERT INTO ACCOUNT VALUES(5876,'B4','RECURRING',80000,'C3');
+
+SELECT * FROM ACCOUNT;
+
+
+INSERT INTO LOAN VALUES('L1','B1',500000,'C1');
+INSERT INTO LOAN VALUES('L2','B2',50000,'C2');
+INSERT INTO LOAN VALUES('L3','B3',40000,'C3');
+INSERT INTO LOAN VALUES('L4','B2',565000,'C4');
+INSERT INTO LOAN VALUES('L5','B4',955000,'C5');
+INSERT INTO LOAN VALUES('L6','B5',20000,'C2');
+
+
+SELECT * FROM LOAN;
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+QUERY 1
+Find all the customers who have at least one account at the “Mangaluru” branch.
+
+SELECT C.CUSTOMER_ID,C.CUSTOMER_NAME FROM CUSTOMER C,ACCOUNT A,BRANCH B
+WHERE B.BRANCH_NAME='MANGALURU'AND B.BRANCH_ID=A.BRANCH_ID 
+AND A.CUSTOMER_ID=C.CUSTOMER_ID;
+
+CUSTOMER_I CUSTOMER_NAME
+---------- --------------------
+C1         RAVI
+C1         RAVI
+C3         VARUN
+C4         ARPITHA
+
+QUERY 2
+Find all the customers who have an account at all the branches located in a specific city.
+
+SELECT C.CUSTOMER_ID,C.CUSTOMER_NAME,A.ACCOUNT_BALANCE FROM 
+      CUSTOMER C,ACCOUNT A
+      WHERE C.CUSTOMER_ID=A.CUSTOMER_ID AND 
+      ACCOUNT_BALANCE=(SELECT MAX(ACCOUNT_BALANCE)FROM ACCOUNT);
+
+CUSTOMER_I CUSTOMER_NAME        ACCOUNT_BALANCE
+---------- -------------------- ---------------
+C5         SACHIN                         90000
+
+QUERY 3
+
+Retrieve the Customer name and loan amount of a customer who borrowed a loan more than 5,00,000.
+
+ SELECT C.CUSTOMER_NAME C,L.AMOUNT FROM CUSTOMER C,LOAN L 
+     WHERE C.CUSTOMER_ID=L.CUSTOMER_ID AND AMOUNT>500000;
+
+C                        AMOUNT
+-------------------- ----------
+ARPITHA                  565000
+SACHIN                   955000
+
+QUERY 4
+
+Retrieve the details of bank branch with maximum and minimum assets among the various branches.
+
+SELECT BANK_NAME,BRANCH_NAME,ASSETS FROM BRANCH
+WHERE ASSETS=(SELECT MAX(ASSETS)FROM BRANCH)
+UNION
+SELECT BANK_NAME,BRANCH_NAME,ASSETS FROM BRANCH
+WHERE ASSETS=(SELECT MIN(ASSETS)FROM BRANCH)
+;
+
+BANK_NAME       BRANCH_NAME              ASSETS
+--------------- -------------------- ----------
+BANK OF BARODA  MANGALURU              70000000
+UNION BANK      DELHI                  20000000
+
+QUERY 5
+
+Demonstrate how you delete all account tuples at every branch located in a specific city.
+
+DELETE FROM BRANCH WHERE BRANCH_NAME='DELHI';
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+LAB 2
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE PUBLISHER(
+NAME VARCHAR2(20) PRIMARY KEY,
+ADDRESS VARCHAR2(20),
+PHONE NUMBER(10)); 
+
+
+INSERT INTO PUBLISHER VALUES('Pearson','London',9874522224);
+INSERT INTO PUBLISHER VALUES('TataMcGraw','NewYork',9858523565);
+INSERT INTO PUBLISHER VALUES('Oxford','UK',9885121112);
+INSERT INTO PUBLISHER VALUES('Cambridge','UK',9785634615);
+INSERT INTO PUBLISHER VALUES('OReilly','California',9994125455);
+
+
+CREATE TABLE BOOK (
+BOOK_ID VARCHAR2(20) PRIMARY KEY, 
+TITLE VARCHAR2(40), 
+PUBLISHER_NAME VARCHAR2(20) references
+PUBLISHER(NAME) on delete cascade, 
+PUB_YEAR INT);
+
+
+INSERT INTO BOOK VALUES ('B101','DBMS','Pearson',2017);
+INSERT INTO BOOK VALUES ('B102','AIML','TataMcGraw',2009);
+INSERT INTO BOOK VALUES ('B103','DCN','Pearson',2017);
+INSERT INTO BOOK VALUES ('B104','ATC','Oxford',2017);
+INSERT INTO BOOK VALUES ('B105','Python','OReilly',2014);
+INSERT INTO BOOK VALUES ('B106','Hadoop','Pearson',2000);
+
+
+CREATE  TABLE  BOOK_AUTHORS(
+BOOK_ID varchar(20),
+AUTHOR_NAME VARCHAR2(20), 
+PRIMARY KEY(BOOK_ID, AUTHOR_NAME),
+FOREIGN KEY(BOOK_ID) REFERENCES BOOK 
+ON DELETE CASCADE);
+
+
+INSERT INTO BOOK_AUTHORS VALUES('B101', 'Elmarsi');
+INSERT INTO BOOK_AUTHORS VALUES('B101', 'Navathe');
+INSERT INTO BOOK_AUTHORS VALUES('B101', 'Ramakrishnan');
+INSERT INTO BOOK_AUTHORS VALUES('B106', 'Douglas');
+INSERT INTO BOOK_AUTHORS VALUES('B102', 'Elaine');
+INSERT INTO BOOK_AUTHORS VALUES('B105', 'Srinivasan');
+
+
+CREATE TABLE LIBRARY_PROGRAMME(
+PROGRAMME_ID VARCHAR(20) PRIMARY KEY,
+PROGRAMME_NAME VARCHAR(10),
+ADDRESS VARCHAR(20));
+
+
+INSERT INTO LIBRARY_PROGRAMME VALUES ('L1','SAHYADRI','Mangalore');
+INSERT INTO LIBRARY_PROGRAMME VALUES ('L2','SAPNA','Mangalore');
+INSERT INTO LIBRARY_PROGRAMME VALUES ('L3','SANKALP','Bangalore');
+INSERT INTO LIBRARY_PROGRAMME VALUES ('L4','PENGUIN','Chennai');
+INSERT INTO LIBRARY_PROGRAMME VALUES ('L5','AGNES','Chennai');
+
+
+CREATE TABLE BOOK_COPIES(
+BOOK_ID VARCHAR(20) REFERENCES BOOK(BOOK_ID) ON DELETE CASCADE,
+PROGRAMME_ID VARCHAR(20) REFERENCES LIBRARY_PROGRAMME(PROGRAMME_ID) ON DELETE CASCADE,
+NO_OF_COPIES NUMBER(3),
+primary key(BOOK_ID, PROGRAMME_ID));
+
+
+INSERT INTO BOOK_COPIES VALUES ('B101','L1',99);
+INSERT INTO BOOK_COPIES VALUES ('B101','L2',100);
+INSERT INTO BOOK_COPIES VALUES ('B102','L1',99);
+INSERT INTO BOOK_COPIES VALUES ('B102','L2',100);
+INSERT INTO BOOK_COPIES VALUES ('B103','L2',10);
+INSERT INTO BOOK_COPIES VALUES ('B103','L1',9);
+
+
+CREATE TABLE  BOOK_LENDING(
+BOOK_ID VARCHAR(20),
+PROGRAMME_ID VARCHAR(20),
+CARD_NO VARCHAR(20),
+DATE_OUT DATE,
+DUE_DATE DATE, 
+PRIMARY KEY(PROGRAMME_ID, BOOK_ID, CARD_NO),
+FOREIGN KEY(BOOK_ID) REFERENCES book(BOOK_ID) ON DELETE CASCADE,
+FOREIGN KEY(PROGRAMME_ID) rEFERENCES LIBRARY_PROGRAMME(PROGRAMME_ID) ON DELETE CASCADE,
+CONSTRAINT CK1 CHECK (DUE_DATE > DATE_OUT));
+
+
+INSERT INTO BOOK_LENDING VALUES('B101','L1','FA101','02-JAN-21','09-JAN-21');
+INSERT INTO BOOK_LENDING VALUES('B101','L1','FA102','02-MAR-23','09-MAR-23');
+INSERT INTO BOOK_LENDING VALUES('B102','L1','FA102','02-MAR-23','09-MAR-23');
+INSERT INTO BOOK_LENDING VALUES('B101','L2','FA102','02-MAR-23','09-MAR-23');
+INSERT INTO BOOK_LENDING VALUES('B101','L1','S103','04-APR-22','30-JUN-22');
+
+
+SELECT * FROM PUBLISHER;
+
+
+SELECT * FROM BOOK;
+
+
+SELECT * FROM BOOK_AUTHORS;
+
+
+SELECT * FROM LIBRARY_PROGRAMME;
+
+
+SELECT * FROM BOOK_COPIES;
+
+
+SELECT * FROM BOOK_LENDING;
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+QUERY 1:
+
+
+SELECT b.book_id, lp.programme_id, 
+b.title, b.publisher_name, bc.no_of_copies, 
+a.author_name 
+FROM book b, book_authors a, book_copies bc,
+library_programme lp 
+WHERE b.book_id = a.book_id AND b.book_id = bc.book_id AND bc.programme_id = lp.programme_id;
+
+OR
+
+select b.book_id, title, publisher_name,author_name, no_of_copies
+from book b, book_authors a, book_copies bc
+where b.book_id = bc.book_id AND b.book_id = a.book_id;
+
+
+QUERY 2:
+
+
+SELECT card_no  FROM book_lending 
+WHERE date_out BETWEEN '01-JAN-2023' AND '30-JUN-2023' 
+GROUP BY card_no 
+HAVING COUNT(*) >= 3 ;
+
+
+QUERY 3:
+
+Delete a book in BOOK table. Update the contents 
+of other tables to reflect this data manipulation operation.
+
+
+DELETE FROM book WHERE book_id = &bid;
+
+
+QUERY 4:
+
+
+CREATE TABLE BOOK1 (
+BOOK_ID VARCHAR2(20) PRIMARY KEY, 
+TITLE VARCHAR2(40), 
+PUBLISHER_NAME VARCHAR2(20) references
+PUBLISHER(NAME) on delete cascade, 
+PUB_YEAR INT)
+PARTITION BY RANGE(pub_year)
+(PARTITION p1 VALUES LESS THAN(2001),
+PARTITION p2 VALUES LESS THAN(2005),
+PARTITION P3 VALUES LESS THAN (2010),
+PARTITION P4 VALUES LESS THAN(MAXVALUE));
+
+
+INSERT INTO BOOK1 VALUES ('B101','DBMS','Pearson',2017);
+INSERT INTO BOOK1 VALUES ('B102','AIML','TataMcGraw',2009);
+INSERT INTO BOOK1 VALUES ('B103','DCN','Pearson',2017);
+INSERT INTO BOOK1 VALUES ('B104','ATC','Oxford',2017);
+INSERT INTO BOOK1 VALUES ('B105','Python','OReilly',2014);
+INSERT INTO BOOK1 VALUES ('B106','Hadoop','Pearson',2000);
+
+SELECT * FROM BOOK1 PARTITION(P1);
+
+
+QUERY 5:
+
+
+Create view available_book
+As
+Select b.book_id, b.title, 
+sum(bc.no_of_copies) - (select count(*) from book_lending  
+bl where bl.book_id= b. book_id  group by bl.book_id) 
+as books_available  from book b, book_copies  bc where 
+b.book_id=bc.book_id group by b.book_id,b.title;
+
+
+SELECT * FROM AVAILABLE_BOOK;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LAB 3
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE STUDENT( 
+USN     VARCHAR2(20),
+SNAME   VARCHAR2(10),
+ADDRESS VARCHAR2(10),
+PHONE   NUMBER(10),
+GENDER  VARCHAR2(10), 
+PRIMARY KEY(USN));
+
+
+DESC STUDENT;
+
+
+CREATE TABLE SEMSEC( 
+SSID   NUMBER(5),
+SEM   NUMBER(2),
+SECTION  VARCHAR2(1),
+PRIMARY KEY(ssid));
+
+
+DESC SEMSEC;
+
+
+CREATE TABLE CLASS(
+SSID NUMBER(5),  
+USN  VARCHAR2(20),
+PRIMARY KEY(USN),
+FOREIGN KEY(ssid) REFERENCES semsec(ssid),
+FOREIGN KEY(USN) REFERENCES student(USN));
+
+
+DESC CLASS;
+
+
+CREATE TABLE SUBJECT(
+SUBCODE VARCHAR2(7) PRIMARY KEY, 
+TITLE VARCHAR2(20),
+SEM NUMBER(4),
+credit NUMBER(2));
+
+
+DESC SUBJECT;
+
+
+CREATE TABLE IAMARKS(
+USN  VARCHAR2(20), 
+SSID NUMBER(5),
+SUBCODE VARCHAR2(7),
+TEST1 NUMBER(3),
+TEST2 NUMBER(3),
+TEST3 NUMBER(3),
+FINALIA NUMBER(3),
+PRIMARY KEY(USN,SUBCODE,SSID),
+FOREIGN KEY(USN) REFERENCES STUDENT(USN),
+FOREIGN KEY(SUBCODE) REFERENCES SUBJECT(UBCODE),
+FOREIGN KEY(SSID) REFERENCES SEMSEC(SSID));
+
+
+DESC IAMARKS;
+
+
+INSERT INTO STUDENT VALUES('4SF20CS089','AJAY','MANGALORE',733825,'MALE');
+INSERT INTO STUDENT VALUES('4SF20IS109','VARSHINI','BANTWAL',896523,'FEMALE');
+INSERT INTO STUDENT VALUES('4SF20CS098','NAVISH','UDUPI',9956258,'MALE');
+INSERT INTO STUDENT VALUES('4SF20CD001','SAHANA','SURATHKAL',8752683,'FEMALE');
+INSERT INTO STUDENT VALUES('4SF20CS088','KAVYA','MANGALORE',78965231,'FEMALE');
+
+
+SELECT * FROM STUDENT;
+
+
+INSERT INTO SEMSEC VALUES(1,4,'A');
+INSERT INTO SEMSEC VALUES(2,4,'C');
+INSERT INTO SEMSEC VALUES(3,4,'A');
+INSERT INTO SEMSEC VALUES(4,4,'B');
+INSERT INTO SEMSEC VALUES(5,4,'C');
+INSERT INTO SEMSEC VALUES(6,4,'A');
+
+
+SELECT * FROM SEMSEC;
+
+
+INSERT INTO CLASS VALUES(1,'4SF20CD001');
+INSERT INTO CLASS VALUES(2,'4SF20CS088');
+INSERT INTO CLASS VALUES(3,'4SF20CS098');
+INSERT INTO CLASS VALUES(4,'4SF20IS109');
+INSERT INTO CLASS VALUES(5,'4SF20CS089');
+
+
+SELECT * FROM CLASS;
+
+
+INSERT INTO SUBJECT VALUES('20CS31','DATA STRUCTURE',4,4);
+INSERT INTO SUBJECT VALUES('20CS32','UNIX',4,3);
+INSERT INTO SUBJECT VALUES('20CS33','DBMS',4,4);
+INSERT INTO SUBJECT VALUES('20CS34','DCN',4,3);
+INSERT INTO SUBJECT VALUES('20CS35','AIML',4,4);
+
+
+SELECT * FROM SUBJECT;
+
+
+
+INSERT INTO IAMARKS VALUES('4SF20CD001',1,'20CS31',38,35,32,0);
+INSERT INTO IAMARKS VALUES('4SF20CD001',1,'20CS32',28,26,29,0);
+INSERT INTO IAMARKS VALUES('4SF20CS088',2,'20CS31',38,42,32,0);
+INSERT INTO IAMARKS VALUES('4SF20CS098',3,'20CS33',42,46,41,0);
+INSERT INTO IAMARKS VALUES('4SF20IS109',4,'20CS34',28,46,29,0);
+INSERT INTO IAMARKS VALUES('4SF20CS098',5,'20CS35',48,46,50,0);
+
+
+SELECT * FROM IAMARKS;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+QUERY 1:
+SELECT A.*,B.SEM,B.SECTION FROM STUDENT A,SEMSEC B,CLASS C WHERE A.USN=C.USN AND B.SSID=C.SSID ND B.SEM=4 AND B.SECTION='C';
+
+
+QUERY 2:
+
+SELECT sem,section,gender,count(*) FROM student s, semsec s1,class c WHERE s.usn=c.usn AND s1.s id=c.ssid GROUP BY (gender,sem,section) ORDER BY(sem);
+
+
+QUERY 3:
+CREATE VIEW internal2 AS SELECT 
+usn,s.subcode,title,TESTT1 FROM subject s,
+iamarks i WHERE i.subcode=s.subcode 
+and i.usn='4SF20CD001';
+
+
+[optional]
+Query 3:
+CREATE VIEW TEST_MARKS 
+AS SELECT SUBCODE ,TESTT1 FROM IAMARKS 
+WHERE USN='4SF20CD001';
+
+
+SELECT  * FROM TEST_MARKS;
+
+
+QUERY 4:
+
+UPDATE iamarks SET 
+finalia=GREATEST((testT1+test2),
+(testT1+test3),(test3+test2))/2;
+
+
+SELECT * FROM IAMARKS;
+
+
+Query 5:
+SELECT usn,finalia, 
+CASE 
+WHEN finalia BETWEEN 45 AND 50 THEN 'outstanding' 
+WHEN finalia BETWEEN 40 AND 45 THEN 'GOOD' 
+WHEN finalia BETWEEN 30 AND 40 THEN 'AVERAGE' 
+WHEN finalia <30  THEN 'weak'  
+END
+AS CATEGORY FROM iamarks i,
+semsec s WHERE i.ssid=s.ssid 
+AND sem=8 AND section IN('A','B','C');
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LAB 4
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE TABLE employee(
+Eid INT PRIMARY KEY,
+name VARCHAR2(20),
+address VARCHAR2(20),
+Gender CHAR(1) CHECK(Gender ='M' OR Gender ='F'),
+salary NUMBER(6),
+SuperEid REFERENCES EMPLOYEE(Eid),
+dno NUMBER);
+
+
+INSERT INTO employee VALUES(1, 'Rahul' , 'Mangaluru', 'M',35000,1,NULL);
+INSERT INTO employee VALUES(2, 'Sahana', 'Mangaluru', 'F',35000,1,NULL);
+INSERT INTO employee VALUES(3, 'Sagar', 'Bengaluru', 'M',35000,1,NULL);
+INSERT INTO employee VALUES(4, 'Sagarik', 'Mangaluru', 'M',35000,1,NULL);
+INSERT INTO employee VALUES(5, 'Sajaan', 'Mysore', 'M',600000,1,NULL);
+
+
+CREATE TABLE department (
+Dnum NUMBER(5) PRIMARY KEY,
+dname VARCHAR2(10) ,
+Dmgr_id REFERENCES employee(Eid),
+Mgr_start_date date);
+
+
+INSERT INTO department VALUES(1,'CSE',1,'2-Nov-2007');
+INSERT INTO department VALUES(2,'IOT',2,'2-Nov-2007');
+INSERT INTO department VALUES(3,'Account',2,'2-Nov-2017');
+INSERT INTO department VALUES(4,'ISE',1,'2-Nov-2000');
+INSERT INTO department VALUES(5,'Finance',1,'3-Nov-2001')
+
+
+ALTER TABLE employee ADD CONSTRAINT fk FOREIGN KEY(dno) REFERENCES 
+department(Dnum);
+
+
+UPDATE employee 
+SET dno=4
+where eid=1;
+
+
+UPDATE employee 
+SET dno=1
+where eid=2;
+
+
+UPDATE employee 
+SET dno=3
+where eid=3;
+
+
+UPDATE employee 
+SET dno=3
+where eid=4;
+
+
+UPDATE employee 
+SET dno=3
+where eid=5;
+
+
+SELECT * FROM EMPLOYEE;
+
+
+SELECT * FROM DEPARTMENT;
+
+
+CREATE TABLE dlocation 
+(dno REFERENCES department(dnum),  
+location  VARCHAR2(10), 
+PRIMARY KEY(dno,location)); 
+
+
+INSERT INTO dlocation VALUES(1,'Mangaluru');
+
+
+SELECT * FROM DLOCATION;
+
+
+CREATE TABLE project(
+Pnum NUMBER(2) PRIMARY KEY,
+Pname VARCHAR2(20), 
+Plocation VARCHAR2(20), 
+dno NUMBER  REFERENCES    department(dnum)
+);
+
+
+INSERT INTO project VALUES(2,'Data Mining','Managluru',1);
+
+
+SELECT * FROM PROJECT;
+
+
+CREATE TABLE  workson (
+Eid  NUMBER(5) REFERENCES employee(eid),
+Pno  NUMBER(2) REFERENCES   project(Pnum),
+hours NUMBER(5,2), 
+primary key(Eid,Pno));
+
+
+INSERT INTO workson VALUES(1,1,4);
+
+
+SELECT * FROM WORKSON;
+
+
+CREATE TABLE DEPENDENT(
+EMP_ID INT CONSTRAINT DEP_EMPID_PK PRIMARY KEY, 
+DEPENDENT_NAME VARCHAR2(12),
+GENDER VARCHAR2(5), 
+BDATE DATE, 
+RELATIONSHIP VARCHAR2(12), 
+FOREIGN KEY(EMP_ID)REFERENCES EMPLOYEE(EID) ON DELETE CASCADE
+); 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Query 1:Make a list of all project numbers for projects that involve an 
+employee whose name is “Rahul”,either as a worker or as a manager 
+of the department that controls the project.
+SELECT pno 
+FROM workson 
+WHERE Eid IN
+(SELECT Eid FROM employee WHERE name='Rahul') 
+UNION 
+SELECT Pnum 
+FROM project 
+WHERE dno IN
+(SELECT Dnum FROM department WHERE DMgr_id IN  
+(SELECT Eid FROM employee WHERE name='Rahul'));
+
+
+Query 2:Show the resulting salaries if every employee working on the “IoT” project is given a 10 percent
+raise.
+
+
+SELECT Eid,name, salary,salary+0.1*salary as updated_salary 
+FROM employee  
+WHERE Eid IN
+(SELECT Eid FROM workson WHERE pno IN(
+SELECT pnum FROM project WHERE Pname='IOT'));
+
+
+Query3:Find the  sum of the  salaries of all employees  of the  “Accounts” department,  as well as the
+maximum salary, the minimum salary, and the average salary in this department.
+
+
+SELECT SUM(salary), AVG(salary), MAX(salary), MIN(salary)
+FROM employee e,department d
+WHERE d.dnum=e.dno AND dname='Account';
+
+
+Query 4:Retrieve the name of each employee who works on 
+all the projects controlled by department number 5 (use NOT EXISTS operator).
+
+
+SELECT Eid,name 
+FROM employee e 
+WHERE NOT EXISTS(
+(SELECT pnum FROM project WHERE dno=5) MINUS 
+(SELECT pno FROM workson w WHERE w.Eid=e.Eid)
+);
+
+
+QUERY 5:Create a view Dept_info that gives details of department name, 
+Number of employees and total salary of each department.
+
+
+Create view dept_info(name,count_emp,sum_sal) as
+Select d.dname, count(*), sum(salary) 
+From department d inner join employee e
+ON e.Dno = d.Dnum
+Group by d.Dname;
+
+
+SELECT * FROM DEPT_INFO;
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LAB5
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE FLIGHT(
+FLIGHT_NUM INT,
+SOURCE VARCHAR(20),
+DESTINATION VARCHAR(20),
+DISTANCE INT,
+DEPARTS VARCHAR(10),
+ARRIVES VARCHAR(10),
+PRICE INT,
+PRIMARY KEY (FLIGHT_NUM) );
+
+
+CREATE TABLE EMPLOYEES(
+EID INT,
+ENAME VARCHAR(20),
+SALARY INT,
+PRIMARY KEY (EID) );
+
+
+CREATE TABLE AIRCRAFT(
+AID INT,
+ANAME VARCHAR(20),
+CRUISINGRANGE INT,
+PRIMARY KEY (AID) );
+
+
+CREATE TABLE CERTIFIED(
+EID INT,
+AID INT,
+PRIMARY KEY (EID,AID),
+FOREIGN KEY (EID) REFERENCES EMPLOYEES (EID),
+FOREIGN KEY (AID) REFERENCES AIRCRAFT (AID) );
+
+
+INSERT INTO FLIGHT VALUES(1,'BANGALORE','MANGALORE',300,10.45,12.00,10000);
+INSERT INTO FLIGHT VALUES(2,'BANGALORE','DELHI',5000,12.15,4.30,25000);
+INSERT INTO FLIGHT VALUES(3,'BANGALORE','MUMBAI',3500,2.15,5.25,30000);
+INSERT INTO FLIGHT VALUES(4,'DELHI','MUMBAI',4500,10.15,12.05,35000);
+INSERT INTO FLIGHT VALUES(5,'DELHI','FRANKFURT',18000,7.15,5.30,90000);
+INSERT INTO FLIGHT VALUES(6,'BANGALORE','FRANKFURT',19500,10.00,7.45,95000);
+INSERT INTO FLIGHT VALUES(7,'BANGALORE','FRANKFURT',17000,12.00,6.30,99000);
+
+
+SELECT * FROM FLIGHT;
+
+
+INSERT INTO AIRCRAFT VALUES(123,'AIRBUS',1000);
+INSERT INTO AIRCRAFT VALUES(302,'BOEING',5000);
+INSERT INTO AIRCRAFT VALUES(306,'JET01',5000);
+INSERT INTO AIRCRAFT VALUES(378,'AIRBUS380',8000);
+INSERT INTO AIRCRAFT VALUES(456,'AIRCRAFT',500);
+INSERT INTO AIRCRAFT VALUES(789,'AIRCRAFT02',800);
+INSERT INTO AIRCRAFT VALUES(951,'AIRCRAFT03',1000);
+
+
+SELECT * FROM AIRCRAFT;
+
+
+INSERT INTO EMPLOYEES VALUES(1,'AJAY',30000);
+INSERT INTO EMPLOYEES VALUES(2,'AJITH',85000);
+INSERT INTO EMPLOYEES VALUES(3,'ARNAB',50000);
+INSERT INTO EMPLOYEES VALUES(4,'HARRY',45000);
+INSERT INTO EMPLOYEES VALUES(5,'ARUN',90000);
+INSERT INTO EMPLOYEES VALUES(6,'JOSH',75000);
+INSERT INTO EMPLOYEES VALUES(7,'RAM',100000);
+
+
+SELECT * FROM EMPLOYEES;
+
+
+INSERT INTO CERTIFIED VALUES(1,123);
+INSERT INTO CERTIFIED VALUES(2,123);
+INSERT INTO CERTIFIED VALUES(1,302);
+INSERT INTO CERTIFIED VALUES(5,302);
+INSERT INTO CERTIFIED VALUES(7,302);
+INSERT INTO CERTIFIED VALUES(1,306);
+INSERT INTO CERTIFIED VALUES(2,306);
+INSERT INTO CERTIFIED VALUES(1,378);
+INSERT INTO CERTIFIED VALUES(2,378);
+INSERT INTO CERTIFIED VALUES(4,378);
+INSERT INTO CERTIFIED VALUES(3,456);
+INSERT INTO CERTIFIED VALUES(6,456);
+INSERT INTO CERTIFIED VALUES(1,789);
+INSERT INTO CERTIFIED VALUES(5,789);
+INSERT INTO CERTIFIED VALUES(6,789);
+INSERT INTO CERTIFIED VALUES(1,951);
+INSERT INTO CERTIFIED VALUES(3,951);
+
+      
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+        
+QUERY 1:
+
+SELECT DISTINCT a.aname
+FROM aircraft a, certified c, employees e
+WHERE a.aid=c.aid
+AND c.eid=e.eid
+AND NOT EXISTS
+(SELECT *
+FROM employees e1
+WHERE e1.eid=e.eid
+AND e1.salary<80000);
+
+
+QUERY 2:
+
+
+SELECT c.eid,MAX(cruisingrange)
+FROM certified c,aircraft a
+WHERE c.aid=a.aid
+GROUP BY c.eid
+HAVING COUNT(*)>3;
+
+
+QUERY 3:
+
+
+SELECT DISTINCT e.ename
+FROM employees e
+WHERE e.salary<=
+(SELECT MIN(f.price)
+FROM flight f
+WHERE f.Source='BANGALORE'
+AND f.Destination='MUMBAI');
+
+
+QUERY 4:
+
+SELECT a.aid
+FROM aircraft a
+WHERE a.cruisingrange>
+(SELECT MIN(f.distance)
+FROM flight f
+WHERE f.Source='BANGALORE'
+AND f.Destination='DELHI');
+
+
+query 5:
+
+
+SELECT ename,salary from employees where salary=(select MAX(salary) 
+FROM employees 
+WHERE salary <(select max(salary)from employees));
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
