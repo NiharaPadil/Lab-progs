@@ -73,6 +73,31 @@ Write SQL queries to
 
 
 
+---------------------------------------
+SELECT Pnum 
+FROM PROJECT 
+WHERE Pnum IN (
+    SELECT Pno 
+    FROM WORKS_ON 
+    WHERE Eid IN (
+        SELECT Eid 
+        FROM EMPLOYEE 
+        WHERE Name = 'Rahul'
+    )
+)
+OR Pnum IN (
+    SELECT P.Dno 
+    FROM PROJECT P, DEPARTMENT D 
+    WHERE P.Dno = D.Dnum AND D.DMgr_id IN (
+        SELECT Eid 
+        FROM EMPLOYEE 
+        WHERE Name = 'Rahul'
+    )
+);
+-----------------------------------------
+
+
+
 
 
 
