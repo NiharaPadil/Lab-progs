@@ -149,8 +149,7 @@ WHERE BRANCH_ID IN (
 );
 
 
-![Example Image](images/example.png)
-![Example Image](images/example.png)
+
 
 
 
