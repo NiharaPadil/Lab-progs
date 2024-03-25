@@ -138,7 +138,7 @@ SELECT * FROM IAMARKS;
 -- QUERY 5 
 
 SELECT S.* , CASE
-		   WHEN I.FinalIA BETWEEN 90 AND 100 THEN 'Outstanding'
+	   WHEN I.FinalIA BETWEEN 90 AND 100 THEN 'Outstanding'
            WHEN I.FinalIA BETWEEN 80 AND 490 THEN 'Good'
            WHEN I.FinalIA BETWEEN 70 AND 80 THEN 'Average'
            WHEN I.FinalIA < 30 THEN 'Weak'
