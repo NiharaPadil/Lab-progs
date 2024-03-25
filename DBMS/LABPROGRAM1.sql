@@ -49,40 +49,32 @@ FOREIGN KEY(CUSTOMER_ID) REFERENCES CUSTOMER(CUSTOMER_ID) ON DELETE CASCADE);
 
 
 -- Insert values into the BRANCH table
-INSERT INTO BRANCH (BRANCH_ID, BANK_NAME, BRANCH_NAME, ASSETS) 
-VALUES 
-('B001', 'Bank of Mangaluru', 'Mangaluru ', '1000000'),
-('B002', 'Bank of Mangaluru', 'Bengaluru ', '500000'),
-('B003', 'Bank of Bengaluru', 'Bengaluru ', '750000'),
-('B004', 'Bank of Bengaluru', 'Mangaluru ', '600000'),
-('B005', 'Bank of Hyderabad', 'Hyderabad ', '400000');
+INSERT INTO BRANCH VALUES ('B001', 'Bank of Mangaluru', 'Mangaluru ', '1000000');
+INSERT INTO BRANCH VALUES('B002', 'Bank of Mangaluru', 'Bengaluru ', '500000');
+INSERT INTO BRANCH VALUES('B003', 'Bank of Bengaluru', 'Bengaluru ', '750000');
+INSERT INTO BRANCH VALUES('B004', 'Bank of Bengaluru', 'Mangaluru ', '600000');
+INSERT INTO BRANCH VALUES('B005', 'Bank of Hyderabad', 'Hyderabad ', '400000');
 
 -- Insert values into the CUSTOMER table
-INSERT INTO CUSTOMER (CUSTOMER_ID, CUSTOMER_NAME, CUSTOMER_AGE, CUSTOMER_ADDRESS, CUSTOMER_PHONE) 
-VALUES 
-('C001', 'Alice', '30', '123 Maple Street', '1234567890'),
-('C002', 'Bob', '35', '456 Oak Avenue', '2345678901'),
-('C003', 'Charlie', '40', '789 Pine Street', '345-678-9012'),
-('C004', 'Diana', '45', '987 Elm Street', '4567890123'),
-('C005', 'Evan', '50', '654 Cedar Road', '5678901234');
+INSERT INTO CUSTOMER VALUES ('C001', 'Alice', '30', '123 Maple Street', '1234567890');
+INSERT INTO CUSTOMER VALUES('C002', 'Bob', '35', '456 Oak Avenue', '2345678901');
+INSERT INTO CUSTOMER VALUES('C003', 'Charlie', '40', '789 Pine Street', '345-678-9012');
+INSERT INTO CUSTOMER VALUES('C004', 'Diana', '45', '987 Elm Street', '4567890123');
+INSERT INTO CUSTOMER VALUES('C005', 'Evan', '50', '654 Cedar Road', '5678901234');
 
 -- Insert values into the ACCOUNT table
-INSERT INTO ACCOUNT (ACC_NO, BRANCH_ID, ACCOUNT_TYPE, ACCOUNT_BALANCE, CUSTOMER_ID) 
-VALUES 
-('101', 'B001', 'Savings', '10000', 'C001'),
-('102', 'B002', 'Recurrent', '15000', 'C002'),
-('103', 'B003', 'Fixed Deposit', '20000', 'C003'),
-('104', 'B004', 'Savings', '25000', 'C004'),
-('105', 'B005', 'Recurrent', '30000', 'C005');
+INSERT INTO ACCOUNT VALUES ('101', 'B001', 'Savings', '10000', 'C001');
+INSERT INTO ACCOUNT VALUES ('102', 'B002', 'Recurrent', '15000', 'C002');
+INSERT INTO ACCOUNT VALUES ('103', 'B003', 'Fixed Deposit', '20000', 'C003');
+INSERT INTO ACCOUNT VALUES ('104', 'B004', 'Savings', '25000', 'C004');
+INSERT INTO ACCOUNT VALUES ('105', 'B005', 'Recurrent', '30000', 'C005');
 
 -- Insert values into the LOAN table
-INSERT INTO LOAN (LOAN_NUMBER, BRANCH_ID, AMOUNT, CUSTOMER_ID) 
-VALUES 
-('L001', 'B001', '500000', 'C001'),
-('L002', 'B002', '450000', 'C002'),
-('L003', 'B003', '600000', 'C003'),
-('L004', 'B004', '550000', 'C004'),
-('L005', 'B005', '700000', 'C005');
+INSERT INTO LOAN VALUES ('L001', 'B001', '500000', 'C001');
+INSERT INTO LOAN VALUES('L002', 'B002', '450000', 'C002');
+INSERT INTO LOAN VALUES('L003', 'B003', '600000', 'C003');
+INSERT INTO LOAN VALUES('L004', 'B004', '550000', 'C004');
+INSERT INTO LOAN VALUES('L005', 'B005', '700000', 'C005');
 
 
 -- QUERY 1
