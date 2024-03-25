@@ -85,21 +85,6 @@ VALUES
 ('L005', 'B005', '700000', 'C005');
 
 
-select distinct c.customer_name
-from customer c,branch b, account a
-where b.branch_name='Mangaluru' and 
-b.branch_id=a.branch_id and a.customer_id = c.customer_id ;
-
-SELECT DISTINCT c.*
-FROM customer c
-JOIN depositor d ON c.cid = d.cid
-JOIN account a ON d.accno = a.accno
-JOIN branch b ON a.bid = b.bid
-WHERE b.branchcity = 'Mangaluru';
-
-
-
-
 -- QUERY 1
 
 SELECT DISTINCT c.*
@@ -147,21 +132,3 @@ WHERE BRANCH_ID IN (
     FROM BRANCH
     WHERE BRANCH_NAME = '&BRANCH_NAME'
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
