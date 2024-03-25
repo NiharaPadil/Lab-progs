@@ -1,7 +1,10 @@
 1	Consider the following schema for Bank Database:
 BRANCH(Branch_id, Bank_name, Branch_name, Assets)
-ACCOUNT(Acc_no, Branch_id, Account_Type, Account_Balance, Customer_id) CUSTOMER(Customer_id, Customer_name, Customer_age, Customer_address, Customer_phone) LOAN(Loan_number, Branch_id, Amount, Customer_id)
+ACCOUNT(Acc_no, Branch_id, Account_Type, Account_Balance, Customer_id)
+CUSTOMER(Customer_id, Customer_name, Customer_age, Customer_address, Customer_phone) 
+LOAN(Loan_number, Branch_id, Amount, Customer_id)
 Note: Account_Type may be of following: Savings, Recurrent, Fixed Deposit
+
 Write SQL queries to
 1. Find all the Customers who have at least one account at the “Mangaluru”  branch.
 2. Find names of the depositors who have deposited highest amount among all the customers.
@@ -10,13 +13,19 @@ Write SQL queries to
 4. Retrieve  the  details  of  bank  branch  with  maximum  and  minimum  assets  among  the  various branches.
 5. Demonstrate how you delete all account tuples at every branch located in a specific city.	
 
-2	
-Consider the following schema for a Library Database:	
- 
+
+-----------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+
 
 2.	Consider the following schema for a Library Database:
-BOOK(Book_id, Title, Publisher_Name, Pub_Year) BOOK_AUTHORS(Book_id, Author_Name) PUBLISHER(Name, Address, Phone) BOOK_COPIES(Book_id, Programme_id, No-of_Copies)
-BOOK_LENDING(Book_id, Programme_id, Card_No, Date_Out, Due_Date) LIBRARY_PROGRAMME(Programme_id, Programme_Name, Address) Write SQL queries to
+BOOK(Book_id, Title, Publisher_Name, Pub_Year) 
+BOOK_AUTHORS(Book_id, Author_Name) PUBLISHER(Name, Address, Phone)
+BOOK_COPIES(Book_id, Programme_id, No-of_Copies)
+BOOK_LENDING(Book_id, Programme_id, Card_No, Date_Out, Due_Date) 
+LIBRARY_PROGRAMME(Programme_id, Programme_Name, Address) 
+
+Write SQL queries to
 1. Retrieve details of all books in the library – id, title, name of publisher, authors, number of copies in each Programme, etc.
 2. Get the particulars of borrowers who have borrowed more than 3 books, but from Jan 2023 to Jun
 2023.
@@ -26,21 +35,17 @@ BOOK_LENDING(Book_id, Programme_id, Card_No, Date_Out, Due_Date) LIBRARY_PROGRAM
 
 
 
+-------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-
-3	Consider the schema for College Database: STUDENT(USN, SName, Address, Phone, Gender) SEMSEC(SSID, Sem, Sec)
+3	Consider the schema for College Database: 
+STUDENT(USN, SName, Address, Phone, Gender) 
+SEMSEC(SSID, Sem, Sec)
 CLASS(USN, SSID)
 COURSE(Subcode, Title, Sem, Credits)
 IAMARKS(USN, Subcode, SSID, Test1, Test2, Test3, FinalIA)
+
 Write SQL queries to
 1. List all the student details studying in fourth semester „C‟ section.
 2. Compute the total number of male and female students in each semester and in each section.
@@ -52,46 +57,41 @@ If FinalIA = 30 to 40 then CAT = “Average”
 If FinalIA< 30 then CAT = “Weak”
 Give these details only for 8th semester A, B, and C section students.	
 
-
-
-
-
-
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 4	Consider the schema for Company Database:
-EMPLOYEE (Eid, Name, Address, Gender, Salary, SuperEid, Dno) DEPARTMENT (Dnum, Dname, DMgr_id, Mgr_start_date) DLOCATION (Dno, Dlocation)
-PROJECT (Pnum, Pname, Plocation, Dno) WORKS_ON (Eid, Pno, Hours)
+EMPLOYEE (Eid, Name, Address, Gender, Salary, SuperEid, Dno)
+DEPARTMENT (Dnum, Dname, DMgr_id, Mgr_start_date) 
+DLOCATION (Dno, Dlocation)
+PROJECT (Pnum, Pname, Plocation, Dno) 
+WORKS_ON (Eid, Pno, Hours)
 DEPENDENT (Empid, Dep_name, Gender, Bdate, Relationship)
+
 Write SQL queries to
 1.   Make a list of all project numbers for projects that involve an employee whose name is “Rahul”,
 either as a worker or as a manager of the department that controls the project.
 2.   Show the resulting salaries if every employee working on the “IoT” project is given a 10 percent
 raise.	
- 
-
-	3.   Find the  sum of the  salaries of all employees  of the  “Accounts” department,  as well as the
+3.   Find the  sum of the  salaries of all employees  of the  “Accounts” department,  as well as the
 maximum salary, the minimum salary, and the average salary in this department.
 4.	Retrieve the name of each employee who works on all the projects controlled by department number 5 (use NOT EXISTS operator).
 5.	Create a view Dept_info that gives details of department name, Number of employees and total salary of each department.	
 
 
-
-
-
-
-
-
-
-
+------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 5	Consider the schema for Airline Database:
-Flights (Flight_num, Source, Destination, Distance, Departs, Arrives, Price) Aircraft (Aid, Aname, Cruising_range)
+Flights (Flight_num, Source, Destination, Distance, Departs, Arrives, Price)
+Aircraft (Aid, Aname, Cruising_range)
 Certified (Emp_id, Aid)
 Employees (Emp_id, Ename, Salary)
 Note: The Employees relation describes pilots and other kinds of employees as well; Every pilot is certified for some aircraft, and only pilots are certified to fly.
+
 Write SQL queries to
 1.   Find the names of aircraft such that all pilots certified to operate them have salaries more than
 Rs.80, 000.
