@@ -139,16 +139,17 @@ FOREIGN KEY(EMP_ID)REFERENCES EMPLOYEE(EID) ON DELETE CASCADE
 
 
 -- Query 1
-SELECT pno 
-FROM workson 
-WHERE Eid IN
-(SELECT Eid FROM employee WHERE name='Rahul') 
+
+SELECT w.pno 
+FROM workson w,employee e
+WHERE w.Eid =e.eid 
+and e.name='Rahul' 
 UNION 
 SELECT Pnum 
-FROM project 
-WHERE dno IN
-(SELECT Dnum FROM department WHERE DMgr_id IN  
-(SELECT Eid FROM employee WHERE name='Rahul'));
+FROM project p,department d,employee e
+WHERE p.dno=d.dnum and d.DMgr_id=e.eid
+and  e.name='Rahul';
+
 
 
 -- Query 2
@@ -167,29 +168,23 @@ WHERE d.dnum=e.dno AND dname='Account';
 
 -- Query 4
 
-SELECT E.Name
-FROM EMPLOYEE E
-WHERE NOT EXISTS (
-    SELECT P.Pnum
-    FROM PROJECT P
-    WHERE P.dno = 5
-    AND P.Pnum NOT IN (
-        SELECT W.Pno
-        FROM WORKSON W
-        WHERE W.Eid = E.Eid
-    )
-);
+SELECT Name
+FROM EMPLOYEE e
+WHERE  NOT EXISTS (
+    SELECT eid
+    from project , workson w
+    where pnum =w.pno and w.eid =e.eid 
+    and dno not in (select dno from project where dno=5));
 
 
 -- QUERY 5
-Create view dept_info(name,count_emp,sum_sal) as
-Select d.dname, count(*), sum(salary) 
-From department d inner join employee e
-ON e.Dno = d.Dnum
-Group by d.Dname;
 
-
-SELECT * FROM DEPT_INFO;
+Create view deptnew as
+select d.dname,count(*), sum(e.salary)
+from employee e, department d
+where d.dnum=e.dno 
+group by dnum;
+SELECT * FROM deptnew;
 
 
 
