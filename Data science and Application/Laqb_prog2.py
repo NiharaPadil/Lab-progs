@@ -54,6 +54,31 @@ plt.xticks(rotation=360)
 plt.show()
 
 
+#-------Scatter Plotting for sepalwidth
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("iris.csv")
+
+bins = [2, 2.5, 3, 3.5, 4, 4.5]
+
+labels = ['2-2.5', '2.6-3', '3.1-3.5', '3.6-4', '4.1-4.5']
+
+df['SepalWidthCategory'] = pd.cut(df['SepalWidthCm'], bins=bins, labels=labels)
+
+category_counts = df['SepalWidthCategory'].value_counts()
+
+bin_midpoints = [(bins[i] + bins[i+1]) / 2 for i in range(len(bins) - 1)]
+
+plt.scatter(bin_midpoints, category_counts)
+plt.title('Scatterplot of Sepal Width Categories')
+plt.xlabel('Sepal Width (cm)')
+plt.ylabel('Frequency')
+plt.xticks(rotation=45)  
+plt.grid(True)
+plt.show()
+
+
 
 
 
