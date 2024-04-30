@@ -31,6 +31,30 @@ df.to_excel('Output.xlsx', index=False)
 print("\nData written to Output.xlsx")
 
 
+#-------Bar chart Plotting for sepalwidth
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("iris.csv")
+
+bins = [2, 2.5, 3, 3.5, 4, 4.5]
+
+labels = ['2-2.5', '2.6-3', '3.1-3.5', '3.6-4', '4.1-4.5']
+
+df['SepalWidthCategory'] = pd.cut(df['SepalWidthCm'], bins=bins, labels=labels)
+
+
+category_counts = df['SepalWidthCategory'].value_counts()
+
+category_counts.plot(kind='bar')
+plt.title('Distribution of Sepal Width Categories')
+plt.xlabel('Sepal Width Category')
+plt.ylabel('Frequency')
+plt.xticks(rotation=360)  
+plt.show()
+
+
+
 
 
 #---Not there for exam ---
