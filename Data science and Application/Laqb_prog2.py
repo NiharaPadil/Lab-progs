@@ -78,6 +78,46 @@ plt.xticks(rotation=45)
 plt.grid(True)
 plt.show()
 
+#----Central limit
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Read the Iris dataset
+iris_df = pd.read_csv("iris.csv")
+
+# Extract the sepal length data
+sepal_length_data = iris_df['SepalLengthCm']
+
+# Set the parameters for the sampling distribution
+num_samples = 100  # Number of samples to draw
+sample_size_range = range(5, 50, 5)  # Range of sample sizes to test
+
+# Initialize a figure for plotting
+plt.figure(figsize=(12, 6))
+
+# Iterate over different sample sizes
+for sample_size in sample_size_range:
+    # Initialize an array to store sample means
+    sample_means = np.zeros(num_samples)
+    
+    # Draw samples and calculate sample means
+    for i in range(num_samples):
+        sample = np.random.choice(sepal_length_data, size=sample_size, replace=False)
+        sample_means[i] = np.mean(sample)
+    
+    # Plot the histogram of sample means
+    plt.hist(sample_means, bins=30, alpha=0.5, label=f'Sample Size: {sample_size}')
+
+# Add labels and title to the plot
+plt.title('Distribution of Sample Means (Central Limit Theorem)')
+plt.xlabel('Sample Mean')
+plt.ylabel('Frequency')
+plt.legend()
+plt.grid(True)
+
+# Show the plot
+plt.show()
 
 
 
