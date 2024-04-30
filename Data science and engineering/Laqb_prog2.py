@@ -29,3 +29,14 @@ print(df)
 # Writing data to Excel file
 df.to_excel('Output.xlsx', index=False)
 print("\nData written to Output.xlsx")
+
+
+
+
+#---Not there for exam ---
+#converting csv to excel
+#import pandas as pd
+#df = pd.read_csv("iris.csv")
+#df.to_excel('iris_excel.xlsx', index=False)
+#print("Data successfully converted to Excel and saved as 'iris_excel.xlsx'")
+
