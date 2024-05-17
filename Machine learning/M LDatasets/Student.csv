@@ -1,53 +1,53 @@
 USN,Name,Age,Grade,GPA,Extracurricular_Course,City
-1,Alice,17,11,3.5,Sports,New York
-2,Bob,16,10,3.2,Music,Los Angeles
-3,Charlie,18,12,3.8,Debate,Chicago
-4,Dana,17,11,3.6,Art,San Francisco
-5,Emily,16,10,3.4,Volunteering,Miami
-6,Frank,18,12,3.9,Chess,Boston
-7,Grace,17,11,3.7,Drama,Seattle
-8,Henry,16,10,3.3,Science Club,Houston
-9,Ivy,18,12,4.0,Robotics,Atlanta
-10,Jack,17,11,3.5,Yearbook,Denver
-11,Kelly,16,10,3.2,Chess,Dallas
-12,Liam,18,12,3.8,Music,Philadelphia
-13,Mia,17,11,3.6,Sports,Phoenix
-14,Noah,16,10,3.4,Debate,Detroit
-15,Olivia,18,12,4.0,Art,Portland
-16,Peter,17,11,3.7,Music,Austin
-17,Quinn,16,10,3.3,Drama,Las Vegas
-18,Rachel,18,12,3.9,Yearbook,Orlando
-19,Sophia,17,11,3.5,Science Club,Charlotte
-20,Thomas,16,10,3.2,Volunteering,San Diego
-21,Uma,18,12,3.8,Sports,Washington D.C.
-22,Victor,17,11,3.6,Debate,San Antonio
-23,Wendy,16,10,3.4,Art,Minneapolis
-24,Xavier,18,12,4.0,Drama,Salt Lake City
-25,Yara,17,11,3.7,Music,Tampa
-26,Zachary,16,10,3.3,Robotics,Indianapolis
-27,Alice,17,11,3.5,Sports,New York
-28,Bob,16,10,3.2,Music,Los Angeles
-29,Charlie,18,12,3.8,Debate,Chicago
-30,Dana,17,11,3.6,Art,San Francisco
-31,Emily,16,10,3.4,Volunteering,Miami
-32,Frank,18,12,3.9,Chess,Boston
-33,Grace,17,11,3.7,Drama,Seattle
-34,Henry,16,10,3.3,Science Club,Houston
-35,Ivy,18,12,4.0,Robotics,Atlanta
-36,Jack,17,11,3.5,Yearbook,Denver
-37,Kelly,16,10,3.2,Chess,Dallas
-38,Liam,18,12,3.8,Music,Philadelphia
-39,Mia,17,11,3.6,Sports,Phoenix
-40,Noah,16,10,3.4,Debate,Detroit
-41,Olivia,18,12,4.0,Art,Portland
-42,Peter,17,11,3.7,Music,Austin
-43,Quinn,16,10,3.3,Drama,Las Vegas
-44,Rachel,18,12,3.9,Yearbook,Orlando
-45,Sophia,17,11,3.5,Science Club,Charlotte
-46,Thomas,16,10,3.2,Volunteering,San Diego
-47,Uma,18,12,3.8,Sports,Washington D.C.
-48,Victor,17,11,3.6,Debate,San Antonio
-49,Wendy,16,10,3.4,Art,Minneapolis
-50,Xavier,18,12,4.0,Drama,Salt Lake City
-51,Yara,17,11,3.7,Music,Tampa
-52,Zachary,16,10,3.3,Robotics,Indianapolis
+1,Alice,17,B,3.5,Sports,New York
+2,Bob,16,A,3.2,Music,Los Angeles
+3,Charlie,18,C,3.8,Debate,Chicago
+4,Dana,17,B,3.6,Art,San Francisco
+5,Emily,16,A,3.4,Volunteering,Miami
+6,Frank,18,C,3.9,Chess,Boston
+7,Grace,17,B,3.7,Drama,Seattle
+8,Henry,16,A,3.3,Science Club,Houston
+9,Ivy,18,C,4.0,Robotics,Atlanta
+10,Jack,17,B,3.5,Yearbook,Denver
+11,Kelly,16,A,3.2,Chess,Dallas
+12,Liam,18,C,3.8,Music,Philadelphia
+13,Mia,17,B,3.6,Sports,Phoenix
+14,Noah,16,A,3.4,Debate,Detroit
+15,Olivia,18,C,4.0,Art,Portland
+16,Peter,17,B,3.7,Music,Austin
+17,Quinn,16,A,3.3,Drama,Las Vegas
+18,Rachel,18,C,3.9,Yearbook,Orlando
+19,Sophia,17,B,3.5,Science Club,Charlotte
+20,Thomas,16,A,3.2,Volunteering,San Diego
+21,Uma,18,C,3.8,Sports,Washington D.C.
+22,Victor,17,B,3.6,Debate,San Antonio
+23,Wendy,16,A,3.4,Art,Minneapolis
+24,Xavier,18,C,4.0,Drama,Salt Lake City
+25,Yara,17,B,3.7,Music,Tampa
+26,Zachary,16,A,3.3,Robotics,Indianapolis
+27,Alice,17,B,3.5,Sports,New York
+28,Bob,16,A,3.2,Music,Los Angeles
+29,Charlie,18,C,3.8,Debate,Chicago
+30,Dana,17,B,3.6,Art,San Francisco
+31,Emily,16,A,3.4,Volunteering,Miami
+32,Frank,18,C,3.9,Chess,Boston
+33,Grace,17,B,3.7,Drama,Seattle
+34,Henry,16,A,3.3,Science Club,Houston
+35,Ivy,18,C,4.0,Robotics,Atlanta
+36,Jack,17,B,3.5,Yearbook,Denver
+37,Kelly,16,A,3.2,Chess,Dallas
+38,Liam,18,C,3.8,Music,Philadelphia
+39,Mia,17,B,3.6,Sports,Phoenix
+40,Noah,16,A,3.4,Debate,Detroit
+41,Olivia,18,C,4.0,Art,Portland
+42,Peter,17,B,3.7,Music,Austin
+43,Quinn,16,A,3.3,Drama,Las Vegas
+44,Rachel,18,C,3.9,Yearbook,Orlando
+45,Sophia,17,B,3.5,Science Club,Charlotte
+46,Thomas,16,A,3.2,Volunteering,San Diego
+47,Uma,18,C,3.8,Sports,Washington D.C.
+48,Victor,17,B,3.6,Debate,San Antonio
+49,Wendy,16,A,3.4,Art,Minneapolis
+50,Xavier,18,C,4.0,Drama,Salt Lake City
+51,Yara,17,B,3.7,Music,Tampa
+52,Zachary,16,A,3.3,Robotics,Indianapolis
