@@ -1,0 +1,48 @@
+#since slno is already dropped so commented the df column
+import pandas as pd
+df = pd.read_csv('EnjoySport.csv')
+#df = df.drop(['slno'],axis=1)
+column_length = df.shape[1]
+df.head()
+
+
+# In[33]:
+
+
+h = ['0']*(column_length-1)
+hp =[]
+hn =[]
+
+
+# In[35]:
+
+
+for training_example in df.values:
+    if training_example[-1] != 'no':
+        hp.append(list(training_example))
+    else:
+        hn.append(list(training_example))   
+
+
+# In[36]:
+
+
+for i in range(len(hp)):
+    for j in range(column_length - 1):
+        if (h[j]=="0"):
+            h[j]=hp[i][j]
+        if (h[j]!=hp[i][j]):
+            h[j]='?'
+        else:
+            h[j]=hp[i][j]
+
+
+# In[38]:
+
+
+print(f'Postive hypothesis:\n{hp}')
+print(f'Negative hypothesis:\n{hn}')
+print(f'Maximlly Specific hypothesis:\n{h}')
+
+
+# In[ ]:
