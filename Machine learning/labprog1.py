@@ -5,16 +5,9 @@ df = pd.read_csv('EnjoySport.csv')
 column_length = df.shape[1]
 df.head()
 
-
-# In[33]:
-
-
 h = ['0']*(column_length-1)
 hp =[]
 hn =[]
-
-
-# In[35]:
 
 
 for training_example in df.values:
@@ -23,8 +16,6 @@ for training_example in df.values:
     else:
         hn.append(list(training_example))   
 
-
-# In[36]:
 
 
 for i in range(len(hp)):
@@ -36,13 +27,7 @@ for i in range(len(hp)):
         else:
             h[j]=hp[i][j]
 
-
-# In[38]:
-
-
 print(f'Postive hypothesis:\n{hp}')
 print(f'Negative hypothesis:\n{hn}')
 print(f'Maximlly Specific hypothesis:\n{h}')
 
-
-# In[ ]:
