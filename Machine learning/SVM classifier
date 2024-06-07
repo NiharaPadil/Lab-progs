@@ -1,3 +1,4 @@
+
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import datasets
@@ -15,7 +16,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 svm_classifier = SVC(kernel='linear')
 svm_classifier.fit(X_train, y_train)
-
 y_pred = svm_classifier.predict(X_test)
 
 accuracy = accuracy_score(y_test, y_pred)
@@ -35,5 +35,9 @@ Z = svm_classifier.decision_function(xy).reshape(XX.shape)
 
 ax.contour(XX, YY, Z, colors='k', levels=[-1, 0, 1], alpha=0.5, linestyles=['--', '-', '--'])
 ax.scatter(svm_classifier.support_vectors_[:, 0], svm_classifier.support_vectors_[:, 1], s=100, linewidth=1, facecolors='none', edgecolors='k')
+
+plt.xlabel('Feature1')
+plt.ylabel('Feature2')
+plt.title('SVM Binary Classifier')
 
 plt.show()
