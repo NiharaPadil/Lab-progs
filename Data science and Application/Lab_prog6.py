@@ -1,6 +1,4 @@
-Here is the updated script with all comments and spaces removed:
 
-```python
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -33,4 +31,4 @@ ax = plt.axes()
 sns.heatmap(cm, annot=True, annot_kws={"size": 30}, fmt='d', cmap="Blues", ax=ax)
 ax.set_title('Confusion Matrix')
 plt.show()
-```
+
