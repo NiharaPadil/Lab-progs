@@ -57,3 +57,29 @@ plt.xlabel('Body mass in grams')
 plt.ylabel('Maximum longevity in years')
 fig.suptitle('Scatter plot with marginal histograms')
 plt.show()
+
+#3c
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+ 
+%matplotlib inline
+image_folder = 'C:/Users/……../Desktop/images'
+img_filenames = sorted(os.listdir(image_folder))
+img_filenames = [f for f in img_filenames if f.endswith(('.png', '.jpg', '.jpeg'))]
+imgs = [mpimg.imread(os.path.join(image_folder, img_filename)) for img_filename in img_filenames]
+fig, axes = plt.subplots(2, 2)
+fig.set_size_inches(6, 6)
+fig.dpi = 150
+axes = axes.ravel()
+labels = ['coast', 'beach', 'building', 'city at night']
+for i in range(len(imgs)):
+   axes[i].imshow(imgs[i])
+   axes[i].set_xticks([]) 
+   axes[i].set_yticks([])  
+   axes[i].set_xlabel(labels[i]) 
+plt.tight_layout()
+plt.show()
+
+
