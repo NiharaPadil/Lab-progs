@@ -16,7 +16,7 @@ def get_synonyms_antonyms(word):
     return set(synonyms), set(antonyms)
 
 # Example usage
-word = input('Enter the word to get antonym and synonym:')
+word = input('Enter the word to get antonym and synonym:').strip()
 synonyms, antonyms = get_synonyms_antonyms(word)
 
 print(f"Synonyms of '{word}': {synonyms}")
