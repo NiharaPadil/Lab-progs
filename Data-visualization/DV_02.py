@@ -27,26 +27,6 @@ plt.grid()
 plt.legend()
 plt.show()
 
-#2a shorten code 
-# import pandas as pd
-# import matplotlib.pyplot as plt
-
-# files = ['GOOGL_data.csv', 'FB_data.csv', 'AAPL_data.csv', 'AMZN_data.csv', 'MSFT_data.csv']
-# labels = ['Google', 'Facebook', 'Apple', 'Amazon', 'Microsoft']
-# data = [pd.read_csv(file).assign(date=lambda df: pd.to_datetime(df['date'])) for file in files]
-
-# plt.figure(figsize=(16, 8), dpi=300)
-# for df, label in zip(data, labels):
-#     plt.plot(df['date'], df['close'], label=label)
-
-# plt.xticks(rotation=70)
-# plt.yticks(range(0, 1450, 100))
-# plt.title('Stock Trend', fontsize=16)
-# plt.ylabel('Closing Price in $', fontsize=14)
-# plt.grid()
-# plt.legend()
-# plt.show()
-
 
 
 #2b
