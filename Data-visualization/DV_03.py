@@ -37,7 +37,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
-data = pd.read_csv('D://DV-Dataset//anage_data.csv')
+data = pd.read_csv('anage_data.csv')
 longe = 'Maximum longevity (yrs)'
 mass = 'Body mass (g)'
 data = data[np.isfinite(data[longe]) & np.isfinite(data[mass])]
@@ -65,7 +65,7 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
  
 %matplotlib inline
-image_folder = 'C:/Users/……../Desktop/images'
+image_folder = 'Datasets'#path
 img_filenames = sorted(os.listdir(image_folder))
 img_filenames = [f for f in img_filenames if f.endswith(('.png', '.jpg', '.jpeg'))]
 imgs = [mpimg.imread(os.path.join(image_folder, img_filename)) for img_filename in img_filenames]
