@@ -83,3 +83,30 @@ plt.tight_layout()
 plt.show()
 
 
+#3d
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+# Correcting variable names and generating random numbers
+ga = np.random.randint(85, 100, 60)
+gb = np.random.randint(85, 100, 60)
+gc = np.random.randint(85, 100, 60)
+gd = np.random.randint(85, 100, 60)
+
+# Creating the plot
+plt.figure(figsize=(10,5), dpi=300)
+
+# Plotting the scatter plot for ga vs gb
+plt.subplot(2, 2, 1)
+plt.scatter(ga, gb, color="red")
+plt.xlabel("group a")
+plt.ylabel("group b")
+plt.title("ga vs gb")
+
+# Display the plot
+plt.tight_layout()
+plt.show()
+
+
+
