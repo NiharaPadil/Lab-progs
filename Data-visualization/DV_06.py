@@ -119,7 +119,7 @@ try:
 
     # Plot the points on the map
 
-    geoplotlib.dot(geodata)
+    geoplotlib.heatmap(geodata,radius=15,blur=15)
 
     geoplotlib.show()
 
