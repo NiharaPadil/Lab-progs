@@ -34,14 +34,25 @@
       in order 
       to fit data points. Select appropriate data set for your experiment and 
       draw 
-      graphs 
+      graphs
+
+  6)   Write a Python program to draw dot plots and heatmaps using geoplotlib 
+      Library. 
+
   7)  Write a python program using Folium Package 
       a) Create a base map 
       b) Add a circular marker with popup text. 
       c) Add a simple marker for parachute style marker with pop-up text. 
       Add a line to the map 
       Annotations and Legends. 
+
+ 8)   Write a Python program to explain working with bokeh line graph using 
+      Annotations and Legends. 
       a) Write a Python program for plotting different types of plots using 
-Bokeh 
-9 Write a program to parse HTML using Beutifulsoup/equivalent Library 
-support 
+      Bokeh 
+
+ 9)   Write a program to parse HTML using Beutifulsoup/equivalent Library 
+      support 
+      
+
+
