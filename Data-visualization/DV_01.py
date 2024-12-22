@@ -40,5 +40,5 @@ filter_data = data[data > 5]
 print("filtered data:", filter_data)
 print("sorted data:", data.sort_values())
 
-reshaped_data = pd.DataFrame({'values': data}).values.reshape(2, 5)
+reshaped_data = pd.DataFrame(data).values.reshape(2, 5)
 print("reshaped data (2x5):", reshaped_data)
