@@ -1,0 +1,47 @@
+  1)  Load the specified dataset 
+      a) Using numpy and compute mean, median, variance and Standard 
+      deviation 
+      and illustrate Indexing, Slicing, Splitting, Iterating, Filtering, Sorting, 
+      Combining, and Reshaping 
+      b) Using pandas and compute mean, median, variance and Standard 
+      deviation 
+      and illustrate Indexing, Slicing, Iterating, Filtering, Sorting and 
+      Reshaping 
+  
+  2)  For a given set of training data examples stored in a .CSV file, 
+      implement and 
+      demonstrate the (Note: Import Matplotlib) 
+      a) Visualizing through a Line Plot 
+      b) Creating a Bar Plot 
+      c) Creating a Stacked Bar Plot to Visualize a specified parameter 
+      d) Comparing specific parameters using Stacked Area Chart 
+  
+ 3)   For a given set of training data examples stored in a .CSV file, 
+      implement and 
+      demonstrate the (Note: Import Matplotlib) Histogram and 
+      a)Box Plot to Visualize the given parameter 
+      b) Scatter Plot to Visualize Correlation 
+      c) Scatter Plot with Marginal Histograms 
+      d) Plotting Multiple Images in a Grid. 
+        
+  4)  For a given set of training data examples stored in a .CSV file, 
+      implement and 
+      demonstrate the (Note: Import Seaborn) 
+      a) To Generate surface temperature analysis 
+      b) Using heat map to find patterns. 
+        
+  5)  Implement the non-parametric Locally Weighted Regression algorithm 
+      in order 
+      to fit data points. Select appropriate data set for your experiment and 
+      draw 
+      graphs 
+  7)  Write a python program using Folium Package 
+      a) Create a base map 
+      b) Add a circular marker with popup text. 
+      c) Add a simple marker for parachute style marker with pop-up text. 
+      Add a line to the map 
+      Annotations and Legends. 
+      a) Write a Python program for plotting different types of plots using 
+Bokeh 
+9 Write a program to parse HTML using Beutifulsoup/equivalent Library 
+support 
