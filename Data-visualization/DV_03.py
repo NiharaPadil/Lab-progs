@@ -12,6 +12,7 @@ plt.xlabel('IQ')
 plt.ylabel('Freq')
 plt.title('IQ for a test')
 plt.show()
+
 plt.figure(figsize=(6,4),dpi=150)
 plt.boxplot(data)
 ax = plt.gca()
@@ -19,6 +20,7 @@ ax.set_xticklabels(['Test group'])
 plt.ylabel('IQ score')
 plt.title('IQ for a test')
 plt.show()
+
 ga=[np.random.randint(50,141) for _ in range(100)]
 gb=[np.random.randint(50,141) for _ in range(100)]
 gc=[np.random.randint(50,141) for _ in range(100)]
